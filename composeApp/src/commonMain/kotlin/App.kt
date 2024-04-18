@@ -13,7 +13,6 @@ import org.jetbrains.compose.ui.tooling.preview.Preview
 import ourkids.composeapp.generated.resources.Res
 import ourkids.composeapp.generated.resources.compose_multiplatform
 
-@OptIn(ExperimentalResourceApi::class)
 @Composable
 @Preview
 fun App() {
