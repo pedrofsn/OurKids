@@ -5,7 +5,13 @@ import androidx.compose.material.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
+import kotlinx.datetime.Clock
+import kotlinx.datetime.LocalDateTime
+import kotlinx.datetime.TimeZone
+import kotlinx.datetime.toLocalDateTime
 import org.jetbrains.compose.resources.ExperimentalResourceApi
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.ui.tooling.preview.Preview
@@ -43,6 +49,12 @@ fun App() {
  fun DemoApp() {
     var showContent by remember { mutableStateOf(false) }
     Column(Modifier.fillMaxWidth(), horizontalAlignment = Alignment.CenterHorizontally) {
+        Text(
+            text = "Today's date is ${todaysDate()}",
+            modifier = Modifier.padding(20.dp),
+            fontSize = 24.sp,
+            textAlign = TextAlign.Center
+        )
         Button(onClick = { showContent = !showContent }) {
             Text("Click me!")
         }
@@ -54,4 +66,12 @@ fun App() {
             }
         }
     }
+}
+
+private fun todaysDate(): String {
+    fun LocalDateTime.format() = toString().substringBefore('T')
+
+    val now = Clock.System.now()
+    val zone = TimeZone.currentSystemDefault()
+    return now.toLocalDateTime(zone).format()
 }
