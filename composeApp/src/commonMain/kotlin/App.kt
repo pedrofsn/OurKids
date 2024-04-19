@@ -8,6 +8,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import kotlinx.coroutines.launch
 import kotlinx.datetime.Clock
 import kotlinx.datetime.LocalDateTime
 import kotlinx.datetime.TimeZone
@@ -25,28 +26,46 @@ fun App() {
     MaterialTheme {
         Scaffold(
             topBar = {
-                TopAppBar(title = {Text("Our Kids Familia")} )
-                     },
+                TopAppBar(title = { Text("Our Kids Family") })
+            },
             content = { innerPadding ->
                 Column(
                     modifier = Modifier
                         .padding(innerPadding)
                         .fillMaxSize(),
-                        verticalArrangement = Arrangement.spacedBy(16.dp)
+                    verticalArrangement = Arrangement.spacedBy(16.dp)
                 ) {
                     DemoApp()
-                    Button(onClick = { }) {
-                        Text(text = "Botão de teste do @pedrofsn")
-                    }
+                    ExploringKMP()
                 }
             }
         )
     }
 }
 
+@Composable
+fun ExploringKMP() {
+    var text by remember { mutableStateOf("Loading") }
+    val scope = rememberCoroutineScope()
+    Button(
+        onClick = {
+            scope.launch {
+                text = try {
+                    text = "Loading..."
+                    Greeting().doRequest()
+                } catch (e: Exception) {
+                    e.toString()
+                }
+            }
+        }
+    ) {
+        Text(text)
+    }
+}
+
 @OptIn(ExperimentalResourceApi::class)
 @Composable
- fun DemoApp() {
+fun DemoApp() {
     var showContent by remember { mutableStateOf(false) }
     Column(Modifier.fillMaxWidth(), horizontalAlignment = Alignment.CenterHorizontally) {
         Text(
