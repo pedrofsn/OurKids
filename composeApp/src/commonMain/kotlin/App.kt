@@ -45,7 +45,7 @@ fun App() {
 
 @Composable
 fun ExploringKMP() {
-    var text by remember { mutableStateOf("Loading") }
+    var text by remember { mutableStateOf("Click to load") }
     val scope = rememberCoroutineScope()
     Button(
         onClick = {
