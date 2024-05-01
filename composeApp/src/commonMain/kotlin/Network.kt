@@ -1,19 +1,17 @@
+
 import io.ktor.client.HttpClient
 import io.ktor.client.plugins.HttpRequestRetry
 import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
 import io.ktor.serialization.kotlinx.json.json
 import kotlinx.serialization.json.Json
 
-expect class HttpClientModuleProvider() {
-    fun getPlatformSpecificClient(): HttpClient
-}
+expect fun getCustomClient(): HttpClient
 
 class HttpClientModuleProviderBase {
 
-    fun configureClient(): HttpClient {
-        return HttpClientModuleProvider().getPlatformSpecificClient().apply {
+    fun customClient(): HttpClient {
+        return getCustomClient().run {
             config {
-
                 install(HttpRequestRetry) {
                     retryOnServerErrors(maxRetries = 5)
                 }

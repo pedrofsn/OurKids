@@ -1,6 +1,6 @@
+
 import io.ktor.client.call.body
 import io.ktor.client.request.get
-import io.ktor.http.contentType
 import network.ResponseBibleAPI
 
 class Greeting {
@@ -13,10 +13,10 @@ class Greeting {
     }
 
     suspend fun doRequest(): String {
-        val response: ResponseBibleAPI = client.configureClient()
+        val response: ResponseBibleAPI = client.customClient()
             .get("https://www.abibliadigital.com.br/api/verses/nvi/random")
-            .body()
+            .body<ResponseBibleAPI>()
 
-        return response.toString()
+        return response.book?.name.orEmpty()
     }
 }
