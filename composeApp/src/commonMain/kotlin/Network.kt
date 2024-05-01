@@ -2,6 +2,8 @@
 import io.ktor.client.HttpClient
 import io.ktor.client.plugins.HttpRequestRetry
 import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
+import io.ktor.client.plugins.observer.ResponseObserver
+import io.ktor.client.statement.bodyAsText
 import io.ktor.serialization.kotlinx.json.json
 import kotlinx.serialization.json.Json
 
@@ -24,6 +26,12 @@ class HttpClientModuleProviderBase {
                             ignoreUnknownKeys = true
                         }
                     )
+                }
+
+                install(ResponseObserver) {
+                    onResponse { response ->
+                        println("Resposta da API: ${response.bodyAsText()}")
+                    }
                 }
             }
         }

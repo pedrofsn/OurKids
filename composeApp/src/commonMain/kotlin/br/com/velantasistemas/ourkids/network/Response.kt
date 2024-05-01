@@ -1,4 +1,5 @@
-package network
+package br.com.velantasistemas.ourkids.network
+
 import kotlinx.serialization.Serializable
 
 @Serializable
