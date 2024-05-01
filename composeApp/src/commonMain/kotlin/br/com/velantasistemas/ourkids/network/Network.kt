@@ -1,4 +1,4 @@
-
+package br.com.velantasistemas.ourkids.network
 import io.ktor.client.HttpClient
 import io.ktor.client.plugins.HttpRequestRetry
 import io.ktor.client.plugins.contentnegotiation.ContentNegotiation

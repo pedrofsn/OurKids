@@ -1,13 +1,13 @@
-
+package br.com.velantasistemas.ourkids.network
 import io.ktor.client.HttpClient
-import io.ktor.client.engine.darwin.Darwin
+import io.ktor.client.engine.okhttp.OkHttp
 import io.ktor.client.plugins.observer.ResponseObserver
 
 actual fun getCustomClient(): HttpClient {
-    return HttpClient(Darwin) {
+    return HttpClient(OkHttp) {
         install(ResponseObserver) {
             onResponse { response ->
-                println("HTTP status IOS: ${response.status}")
+                println("HTTP status Android: ${response.status}")
             }
         }
     }
