@@ -28,7 +28,7 @@ import ourkids.composeapp.generated.resources.compose_multiplatform
 
 @OptIn(ExperimentalResourceApi::class)
 @Composable
-fun DemoApp() {
+fun DateAndAnimation() {
     var showContent by remember { mutableStateOf(false) }
     Column(Modifier.fillMaxWidth(), horizontalAlignment = Alignment.CenterHorizontally) {
         Text(

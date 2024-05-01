@@ -11,7 +11,7 @@ import androidx.compose.runtime.setValue
 import kotlinx.coroutines.launch
 
 @Composable
-fun DoRequestScreen() {
+fun RequestAndResponse() {
     var text by remember { mutableStateOf("Click to load") }
     val scope = rememberCoroutineScope()
     Button(

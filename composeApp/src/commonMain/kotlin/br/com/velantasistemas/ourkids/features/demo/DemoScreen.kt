@@ -1,3 +1,5 @@
+package br.com.velantasistemas.ourkids.features.demo
+
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -9,13 +11,11 @@ import androidx.compose.material.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import br.com.velantasistemas.ourkids.features.demo.DemoApp
-import br.com.velantasistemas.ourkids.features.demo.DoRequestScreen
 import org.jetbrains.compose.ui.tooling.preview.Preview
 
 @Composable
 @Preview
-fun App() {
+fun DemoScreen() {
     MaterialTheme {
         Scaffold(
             topBar = {
@@ -28,8 +28,8 @@ fun App() {
                         .fillMaxSize(),
                     verticalArrangement = Arrangement.spacedBy(16.dp)
                 ) {
-                    DemoApp()
-                    DoRequestScreen()
+                    DateAndAnimation()
+                    RequestAndResponse()
                 }
             }
         )
