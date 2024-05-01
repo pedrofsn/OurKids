@@ -1,3 +1,5 @@
+package br.com.velantasistemas.ourkids.settings
+
 import android.os.Build
 
 class AndroidPlatform : Platform {

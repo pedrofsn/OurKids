@@ -1,3 +1,5 @@
+package br.com.velantasistemas.ourkids.settings
+
 import platform.UIKit.UIDevice
 
 class IOSPlatform: Platform {
