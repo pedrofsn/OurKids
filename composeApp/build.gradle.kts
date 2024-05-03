@@ -3,6 +3,7 @@ plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.jetbrainsCompose)
     alias(libs.plugins.kotlinSerialization)
+    alias(libs.plugins.roomGradlePlugin)
 }
 
 kotlin {
@@ -28,6 +29,7 @@ kotlin {
     sourceSets {
         iosMain.dependencies {
             implementation(libs.ktor.client.darwin)
+            implementation(libs.androidx.sqlite.bundled)
         }
 
         androidMain.dependencies {
@@ -36,6 +38,7 @@ kotlin {
 
             implementation(libs.ktor.client.okhttp)
             implementation(libs.kotlinx.coroutines.android)
+            implementation(libs.androidx.sqlite.bundled)
         }
 
         commonMain.dependencies {
@@ -55,8 +58,17 @@ kotlin {
             implementation(libs.ktor.serialization.kotlinx.json.dois)
             implementation(libs.ktor.client.content.negotiation)
             implementation(libs.ktor.client.encoding)
+
+            // ROOM
+            implementation(libs.room.runtime)
+//            implementation(libs.room.ksp)
+            implementation(libs.androidx.sqlite.bundled)
         }
     }
+}
+
+room {
+    schemaDirectory("$projectDir/schemas")
 }
 
 android {
