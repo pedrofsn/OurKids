@@ -54,7 +54,7 @@ fun InputScreen() {
     }
 }
 
-private fun todayDate(): String {
+fun todayDate(): String {
     fun LocalDateTime.format() = toString().substringBefore('T')
 
     val now = Clock.System.now()
