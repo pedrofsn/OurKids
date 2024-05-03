@@ -3,6 +3,7 @@ plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.jetbrainsCompose)
     alias(libs.plugins.kotlinSerialization)
+    alias(libs.plugins.ksp)
     alias(libs.plugins.roomGradlePlugin)
 }
 
@@ -67,10 +68,6 @@ kotlin {
     }
 }
 
-room {
-    schemaDirectory("$projectDir/schemas")
-}
-
 android {
     namespace = "br.com.velantasistemas.ourkids"
     compileSdk = libs.versions.android.compileSdk.get().toInt()
@@ -103,5 +100,16 @@ android {
     dependencies {
         debugImplementation(libs.compose.ui.tooling)
     }
+}
+
+dependencies {
+    add("kspAndroid", libs.room.compiler)
+    add("kspIosSimulatorArm64", libs.room.compiler)
+    add("kspIosX64", libs.room.compiler)
+    add("kspIosArm64", libs.room.compiler)
+}
+
+room {
+    schemaDirectory("$projectDir/schemas")
 }
 

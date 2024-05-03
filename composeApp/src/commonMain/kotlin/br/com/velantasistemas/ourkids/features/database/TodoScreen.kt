@@ -23,7 +23,7 @@ fun TodoScreen() {
             onClick = {
                 val item = TodoEntity(title = "Teste", content = "Conteúdo")
                 coroutineScope.launch {
-                    Factory().createRoomDatabase().getDao().insert(item)
+//                    Factory.createRoomDatabase().getDao().insert(item)
                 }
             }
         ) {
@@ -38,7 +38,9 @@ fun TodoScreen() {
 class DataRepository(
     private var database: AppDatabase,
     private val scope: CoroutineScope,
-)
+) {
+    fun loadData() = database.getDao().getAllAsFlow()
+}
 
 
 class AppContainer(
