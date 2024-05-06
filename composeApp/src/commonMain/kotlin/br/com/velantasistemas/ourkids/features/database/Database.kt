@@ -19,12 +19,12 @@ abstract class AppDatabase : RoomDatabase() {
 @Dao
 interface TodoDao {
     @Insert
-    suspend fun insert(item: TodoEntity)
+    suspend fun insert(item: TodoEntity): Long
 
     @Query("SELECT count(*) FROM TodoEntity")
     suspend fun count(): Int
 
-    @Query("SELECT * FROM TodoEntity")
+    @Query("SELECT * FROM TodoEntity ORDER BY id DESC")
     fun getAllAsFlow(): Flow<List<TodoEntity>>
 }
 
